@@ -1,17 +1,16 @@
 # Automação de Testes API - ServeRest
 
-Projeto de testes automatizados de API REST usando Cypress para validar os principais endpoints da plataforma ServeRest.
+Projeto de testes automatizados de API usando Cypress para validar os principais fluxos da API ServeRest.
 
 **API testada:** [serverest.dev](https://serverest.dev)
 
 ## Tecnologias
 
-- Cypress 13.x
-- JavaScript (ES6+)
-- Node.js 14+
-- Service Objects Pattern
-- Faker.js (geração de dados dinâmicos)
-- Mochawesome (relatórios HTML)
+- Cypress
+- JavaScript
+- Node.js
+- Faker.js (dados dinâmicos)
+- Mochawesome (relatórios)
 
 ## Pré-requisitos
 
@@ -77,86 +76,70 @@ cypress/
 
 ## Cenários de Teste
 
-### Login (2 testes implementados)
+### Login (2 testes)
 - Login com credenciais válidas
 - Login com credenciais inválidas
 
-**Cenários mapeados:** 13 adicionais (validação de token, rate limiting, XSS, SQL injection, etc.)
-
 ---
 
-### Usuários (2 testes implementados)
+### Usuários (2 testes)
 - Criar usuário com sucesso
-- Tentar cadastrar email duplicado
-
-**Cenários mapeados:** 26 adicionais (CRUD completo, filtros, validações de campos, performance, etc.)
+- Validar erro ao tentar cadastrar email duplicado
 
 ---
 
-### Produtos (2 testes implementados)
-- Criar produto com usuário admin
+### Produtos (2 testes)
+- Criar produto com usuário admin autenticado
 - Listar produtos com filtros
 
-**Cenários mapeados:** 28 adicionais (CRUD completo, validações de permissão, estoque, preços, etc.)
-
 ---
 
-### Carrinhos (2 testes implementados)
+### Carrinhos (2 testes)
 - Criar carrinho com sucesso
-- Tentar adicionar produto inexistente
-
-**Cenários mapeados:** 26 adicionais (validações de estoque, múltiplos produtos, cancelamento, conclusão, etc.)
+- Validar erro ao adicionar produto inexistente
 
 ---
 
-## Padrões Utilizados
+## Organização do Código
 
-**Service Objects Pattern**
+**Services**
 
-Cada endpoint possui sua classe service com métodos encapsulados. Facilita manutenção - se a API mudar, basta alterar em um único lugar.
+Criei classes para cada endpoint (UserService, ProductService, etc) para organizar melhor as chamadas da API e evitar repetição de código.
 
 **Custom Commands**
 
-Comandos personalizados para validações recorrentes, geração de dados dinâmicos e operações comuns entre os testes.
+Alguns comandos customizados para facilitar tarefas repetitivas como login, criação de usuário admin e geração de emails únicos.
 
 **Fixtures**
 
-Massa de dados separada dos testes, permitindo fácil manutenção e reutilização em diferentes cenários.
+Arquivos JSON com dados de exemplo para usar nos testes.
 
-**Organização**
+**Hooks**
 
-Separação clara entre cenários críticos e adicionais. Uso de hooks para setup/cleanup. Nomenclatura descritiva.
+Uso de beforeEach e afterEach para preparar e limpar os dados de teste.
 
-## Status dos Testes
+## Cobertura de Testes
 
-**8/8 testes implementados passando (100%)**
+**8 testes implementados**
 
-- login.cy.js: 2/2
-- usuarios.cy.js: 2/2
-- produtos.cy.js: 2/2
-- carrinhos.cy.js: 2/2
+- login.cy.js: 2 testes
+- usuarios.cy.js: 2 testes
+- produtos.cy.js: 2 testes
+- carrinhos.cy.js: 2 testes
 
-**93 cenários mapeados** para futuras implementações
+## O que é validado
 
-## Validações
+- Status code das respostas
+- Mensagens de erro e sucesso
+- Estrutura dos dados retornados
+- Regras de negócio (ex: não permitir email duplicado)
+- Autenticação e autorização
 
-- Status code das requisições
-- Estrutura do response body
-- Headers HTTP
-- Tipos de dados (schema validation)
-- Regras de negócio da API
-- Tempo de resposta (performance)
-- Autorização e autenticação
-- Tratamento de erros
+## Próximos passos
 
-## Melhorias Futuras
-
-- Implementação dos 93 cenários mapeados
-- Integração com CI/CD (GitHub Actions)
-- Testes de carga e performance
-- Validação de contratos com JSON Schema
-- Cobertura de testes de segurança (OWASP)
-- Dockerização do ambiente
+- Adicionar mais cenários (deletar usuário, atualizar produto, etc)
+- Integrar com CI/CD
+- Melhorar os relatórios
 
 ---
 
