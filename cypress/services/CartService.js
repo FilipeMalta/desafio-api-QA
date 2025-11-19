@@ -1,7 +1,7 @@
-// Service para centralizar as chamadas da API de Carrinhos
+// Chamadas da API de Carrinhos
 class CartService {
 
-    // Lista todos os carrinhos
+    // Lista carrinhos
     static getCarts() {
         return cy.request({
             method: 'GET',
@@ -10,7 +10,7 @@ class CartService {
         });
     }
 
-    // Busca um carrinho específico pelo ID
+    // Busca carrinho por ID
     static getCartById(cartId) {
         return cy.request({
             method: 'GET',
@@ -19,7 +19,7 @@ class CartService {
         });
     }
 
-    // Cria um novo carrinho (precisa estar logado e passar o token)
+    // Cria carrinho (requer token)
     static createCart(dadosCarrinho, token) {
         return cy.request({
             method: 'POST',
@@ -32,7 +32,7 @@ class CartService {
         });
     }
 
-    // Cancela a compra (remove o carrinho e devolve produtos ao estoque)
+    // Cancela compra
     static cancelPurchase(token) {
         return cy.request({
             method: 'DELETE',
@@ -44,7 +44,7 @@ class CartService {
         });
     }
 
-    // Finaliza a compra (remove o carrinho e baixa o estoque)
+    // Finaliza compra
     static completePurchase(token) {
         return cy.request({
             method: 'DELETE',

@@ -1,7 +1,7 @@
-// Service para centralizar as chamadas da API de Usuários
+// Centraliza as chamadas da API de Usuários
 class UserService {
 
-    // Lista todos os usuários (pode filtrar se passar parâmetros)
+    // Lista usuários
     static getUsers(filtros = {}) {
         return cy.request({
             method: 'GET',
@@ -11,7 +11,7 @@ class UserService {
         });
     }
 
-    // Busca um usuário específico pelo ID
+    // Busca usuário por ID
     static getUserById(userId) {
         return cy.request({
             method: 'GET',
@@ -20,7 +20,7 @@ class UserService {
         });
     }
 
-    // Cria um novo usuário
+    // Cria usuário
     static createUser(dadosUsuario) {
         return cy.request({
             method: 'POST',
@@ -30,7 +30,7 @@ class UserService {
         });
     }
 
-    // Atualiza os dados de um usuário existente
+    // Atualiza usuário
     static updateUser(userId, dadosNovos) {
         return cy.request({
             method: 'PUT',
@@ -40,7 +40,7 @@ class UserService {
         });
     }
 
-    // Remove um usuário
+    // Remove usuário
     static deleteUser(userId) {
         return cy.request({
             method: 'DELETE',

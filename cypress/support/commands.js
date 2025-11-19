@@ -1,21 +1,8 @@
-// ***********************************************
 // Comandos customizados para facilitar os testes
-// ***********************************************
 
-// Valida se o retorno da API tem os campos esperados
-Cypress.Commands.add('validateSchema', (data, schema) => {
-    Object.keys(schema).forEach((campo) => {
-        expect(data).to.have.property(campo);
-        if (schema[campo] !== null) {
-            expect(data[campo]).to.be.a(schema[campo]);
-        }
-    });
-});
-
-// Gera um email único usando timestamp (evita duplicação)
+// Gera um email único
 Cypress.Commands.add('generateEmail', () => {
-    const timestamp = Date.now();
-    return `usuario_${timestamp}@qa.com.br`;
+    return `usuario_${Date.now()}@qa.com.br`;
 });
 
 // Cria um usuário administrador para usar nos testes
@@ -56,7 +43,7 @@ Cypress.Commands.add('login', (email, senha) => {
     });
 });
 
-// Remove um usuário (útil para limpar dados após o teste)
+// Remove um usuário
 Cypress.Commands.add('deleteUser', (userId) => {
     return cy.request({
         method: 'DELETE',
@@ -65,7 +52,7 @@ Cypress.Commands.add('deleteUser', (userId) => {
     });
 });
 
-// Remove um produto (precisa do token de admin)
+// Remove um produto
 Cypress.Commands.add('deleteProduct', (productId, token) => {
     return cy.request({
         method: 'DELETE',
@@ -75,9 +62,4 @@ Cypress.Commands.add('deleteProduct', (productId, token) => {
         },
         failOnStatusCode: false
     });
-});
-
-// Comando para limpar dados de teste (placeholder para futuro)
-Cypress.Commands.add('cleanupTestData', () => {
-    cy.log('Limpeza de dados de teste realizada');
 });

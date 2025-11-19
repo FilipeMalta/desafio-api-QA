@@ -1,7 +1,7 @@
-// Service para centralizar as chamadas da API de Produtos
+// Chamadas da API de Produtos
 class ProductService {
 
-    // Lista todos os produtos (pode filtrar se passar parâmetros)
+    // Lista produtos
     static getProducts(filtros = {}) {
         return cy.request({
             method: 'GET',
@@ -11,7 +11,7 @@ class ProductService {
         });
     }
 
-    // Busca um produto específico pelo ID
+    // Busca produto por ID
     static getProductById(productId) {
         return cy.request({
             method: 'GET',
@@ -20,7 +20,7 @@ class ProductService {
         });
     }
 
-    // Cria um novo produto (precisa ser admin e passar o token)
+    // Cria produto (requer token admin)
     static createProduct(dadosProduto, token) {
         return cy.request({
             method: 'POST',
@@ -33,7 +33,7 @@ class ProductService {
         });
     }
 
-    // Atualiza um produto existente (precisa ser admin)
+    // Atualiza produto (requer token admin)
     static updateProduct(productId, dadosNovos, token) {
         return cy.request({
             method: 'PUT',
@@ -46,7 +46,7 @@ class ProductService {
         });
     }
 
-    // Remove um produto (precisa ser admin)
+    // Remove produto (requer token admin)
     static deleteProduct(productId, token) {
         return cy.request({
             method: 'DELETE',

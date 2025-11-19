@@ -1,7 +1,7 @@
-// Service para centralizar as chamadas da API de Login
+// Chamadas da API de Login
 class LoginService {
 
-    // Faz login com email e senha
+    // Faz login
     static login(email, senha) {
         return cy.request({
             method: 'POST',

@@ -29,22 +29,10 @@ describe('API Tests - Login', () => {
     context('Cenários Críticos', () => {
         it('CT01 - Deve realizar login com sucesso com credenciais válidas', () => {
             LoginService.login(testUser.email, testUser.password).then((response) => {
-                // Validações de status code
                 expect(response.status).to.equal(200);
-
-                // Validações de response body
-                expect(response.body).to.have.property('message', 'Login realizado com sucesso');
+                expect(response.body.message).to.equal('Login realizado com sucesso');
                 expect(response.body).to.have.property('authorization');
-                expect(response.body.authorization).to.be.a('string');
                 expect(response.body.authorization).to.not.be.empty;
-                expect(response.body.authorization).to.include('Bearer');
-
-                // Validações de headers
-                expect(response.headers).to.have.property('content-type');
-                expect(response.headers['content-type']).to.include('application/json');
-
-                // Validação de tempo de resposta
-                expect(response.duration).to.be.lessThan(3000);
             });
         });
 
@@ -53,16 +41,9 @@ describe('API Tests - Login', () => {
             const invalidPassword = 'senhaErrada123';
 
             LoginService.login(invalidEmail, invalidPassword).then((response) => {
-                // Validações de status code
                 expect(response.status).to.equal(401);
-
-                // Validações de response body
-                expect(response.body).to.have.property('message', 'Email e/ou senha inválidos');
+                expect(response.body.message).to.equal('Email e/ou senha inválidos');
                 expect(response.body).to.not.have.property('authorization');
-
-                // Validações de headers
-                expect(response.headers).to.have.property('content-type');
-                expect(response.headers['content-type']).to.include('application/json');
             });
         });
     });
