@@ -1,6 +1,6 @@
 // Service para centralizar as chamadas da API de Produtos
 class ProductService {
-    
+
     // Lista todos os produtos (pode filtrar se passar parâmetros)
     static getProducts(filtros = {}) {
         return cy.request({

@@ -1,6 +1,6 @@
 // Service para centralizar as chamadas da API de Usuários
 class UserService {
-    
+
     // Lista todos os usuários (pode filtrar se passar parâmetros)
     static getUsers(filtros = {}) {
         return cy.request({

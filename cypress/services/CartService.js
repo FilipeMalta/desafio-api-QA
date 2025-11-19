@@ -1,6 +1,6 @@
 // Service para centralizar as chamadas da API de Carrinhos
 class CartService {
-    
+
     // Lista todos os carrinhos
     static getCarts() {
         return cy.request({
