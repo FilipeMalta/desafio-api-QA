@@ -1,19 +1,14 @@
-/**
- * Service class for Login endpoints
- */
+// Service para centralizar as chamadas da API de Login
 class LoginService {
-    /**
-     * Realiza login
-     * @param {string} email - Email do usuário
-     * @param {string} password - Senha do usuário
-     */
-    static login(email, password) {
+    
+    // Faz login com email e senha
+    static login(email, senha) {
         return cy.request({
             method: 'POST',
             url: '/login',
             body: {
                 email: email,
-                password: password
+                password: senha
             },
             failOnStatusCode: false
         });

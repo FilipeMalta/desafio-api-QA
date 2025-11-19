@@ -1,24 +1,17 @@
-/**
- * Service class for Users endpoints
- */
+// Service para centralizar as chamadas da API de Usuários
 class UserService {
-    /**
-     * Lista todos os usuários
-     * @param {Object} queryParams - Parâmetros de query (opcional)
-     */
-    static getUsers(queryParams = {}) {
+    
+    // Lista todos os usuários (pode filtrar se passar parâmetros)
+    static getUsers(filtros = {}) {
         return cy.request({
             method: 'GET',
             url: '/usuarios',
-            qs: queryParams,
+            qs: filtros,
             failOnStatusCode: false
         });
     }
 
-    /**
-     * Busca usuário por ID
-     * @param {string} userId - ID do usuário
-     */
+    // Busca um usuário específico pelo ID
     static getUserById(userId) {
         return cy.request({
             method: 'GET',
@@ -27,37 +20,27 @@ class UserService {
         });
     }
 
-    /**
-     * Cria novo usuário
-     * @param {Object} userData - Dados do usuário
-     */
-    static createUser(userData) {
+    // Cria um novo usuário
+    static createUser(dadosUsuario) {
         return cy.request({
             method: 'POST',
             url: '/usuarios',
-            body: userData,
+            body: dadosUsuario,
             failOnStatusCode: false
         });
     }
 
-    /**
-     * Atualiza usuário existente
-     * @param {string} userId - ID do usuário
-     * @param {Object} userData - Dados atualizados
-     */
-    static updateUser(userId, userData) {
+    // Atualiza os dados de um usuário existente
+    static updateUser(userId, dadosNovos) {
         return cy.request({
             method: 'PUT',
             url: `/usuarios/${userId}`,
-            body: userData,
+            body: dadosNovos,
             failOnStatusCode: false
         });
     }
 
-    /**
-     * Deleta usuário
-     * @param {string} userId - ID do usuário
-     */
+    // Remove um usuário
     static deleteUser(userId) {
         return cy.request({
             method: 'DELETE',

@@ -1,61 +1,70 @@
 import UserService from '../services/UserService';
 
-describe('API Tests - Usuários', () => {
-    let createdUserId;
-    let uniqueEmail;
+describe('Testes de API - Usuários', () => {
+    let usuarioCriadoId; // Guarda o ID do usuário criado no teste
+    let emailUnico; // Email único para cada teste
 
+    // Antes de cada teste, gera um email novo
     beforeEach(() => {
-        uniqueEmail = `usuario_${Date.now()}@qa.com.br`;
+        emailUnico = `usuario_${Date.now()}@qa.com.br`;
     });
 
+    // Depois de cada teste, limpa o usuário criado
     afterEach(() => {
-        if (createdUserId) {
-            UserService.deleteUser(createdUserId).then(() => {
-                createdUserId = null;
+        if (usuarioCriadoId) {
+            UserService.deleteUser(usuarioCriadoId).then(() => {
+                usuarioCriadoId = null;
             });
         }
     });
 
     context('Cenários Críticos', () => {
         it('CT01 - Deve criar um novo usuário com sucesso', () => {
-            const userData = {
+            // Dados do novo usuário
+            const novoUsuario = {
                 nome: 'Novo Usuario QA',
-                email: uniqueEmail,
+                email: emailUnico,
                 password: 'senha@123',
                 administrador: 'false'
             };
 
-            UserService.createUser(userData).then((response) => {
-                expect(response.status).to.equal(201);
-                expect(response.body).to.have.property('message', 'Cadastro realizado com sucesso');
-                expect(response.body).to.have.property('_id');
-                expect(response.body._id).to.be.a('string');
+            // Cria o usuário
+            UserService.createUser(novoUsuario).then((resposta) => {
+                // Verifica se retornou status 201 (criado)
+                expect(resposta.status).to.equal(201);
+                expect(resposta.body).to.have.property('message', 'Cadastro realizado com sucesso');
+                expect(resposta.body).to.have.property('_id');
+                expect(resposta.body._id).to.be.a('string');
 
-                createdUserId = response.body._id;
+                usuarioCriadoId = resposta.body._id;
 
-                UserService.getUserById(createdUserId).then((getResponse) => {
-                    expect(getResponse.status).to.equal(200);
-                    expect(getResponse.body.nome).to.equal(userData.nome);
-                    expect(getResponse.body.email).to.equal(userData.email);
+                // Busca o usuário criado para confirmar que foi salvo
+                UserService.getUserById(usuarioCriadoId).then((busca) => {
+                    expect(busca.status).to.equal(200);
+                    expect(busca.body.nome).to.equal(novoUsuario.nome);
+                    expect(busca.body.email).to.equal(novoUsuario.email);
                 });
             });
         });
 
         it('CT02 - Não deve permitir cadastrar usuário com email duplicado', () => {
-            const userData = {
+            const novoUsuario = {
                 nome: 'Usuario Email Duplicado',
-                email: uniqueEmail,
+                email: emailUnico,
                 password: 'senha@123',
                 administrador: 'false'
             };
 
-            UserService.createUser(userData).then((firstResponse) => {
-                expect(firstResponse.status).to.equal(201);
-                createdUserId = firstResponse.body._id;
+            // Cria o primeiro usuário
+            UserService.createUser(novoUsuario).then((primeiraResposta) => {
+                expect(primeiraResposta.status).to.equal(201);
+                usuarioCriadoId = primeiraResposta.body._id;
 
-                UserService.createUser(userData).then((secondResponse) => {
-                    expect(secondResponse.status).to.equal(400);
-                    expect(secondResponse.body).to.have.property('message', 'Este email já está sendo usado');
+                // Tenta criar outro usuário com o mesmo email
+                UserService.createUser(novoUsuario).then((segundaResposta) => {
+                    // Deve retornar erro 400
+                    expect(segundaResposta.status).to.equal(400);
+                    expect(segundaResposta.body).to.have.property('message', 'Este email já está sendo usado');
                 });
             });
         });

@@ -1,10 +1,7 @@
-/**
- * Service class for Cart endpoints
- */
+// Service para centralizar as chamadas da API de Carrinhos
 class CartService {
-    /**
-     * Lista todos os carrinhos
-     */
+    
+    // Lista todos os carrinhos
     static getCarts() {
         return cy.request({
             method: 'GET',
@@ -13,10 +10,7 @@ class CartService {
         });
     }
 
-    /**
-     * Busca carrinho por ID
-     * @param {string} cartId - ID do carrinho
-     */
+    // Busca um carrinho específico pelo ID
     static getCartById(cartId) {
         return cy.request({
             method: 'GET',
@@ -25,27 +19,20 @@ class CartService {
         });
     }
 
-    /**
-     * Cria novo carrinho (requer autenticação)
-     * @param {Object} cartData - Dados do carrinho
-     * @param {string} token - Token de autenticação
-     */
-    static createCart(cartData, token) {
+    // Cria um novo carrinho (precisa estar logado e passar o token)
+    static createCart(dadosCarrinho, token) {
         return cy.request({
             method: 'POST',
             url: '/carrinhos',
             headers: {
                 Authorization: token
             },
-            body: cartData,
+            body: dadosCarrinho,
             failOnStatusCode: false
         });
     }
 
-    /**
-     * Cancela compra (deleta carrinho)
-     * @param {string} token - Token de autenticação
-     */
+    // Cancela a compra (remove o carrinho e devolve produtos ao estoque)
     static cancelPurchase(token) {
         return cy.request({
             method: 'DELETE',
@@ -57,10 +44,7 @@ class CartService {
         });
     }
 
-    /**
-     * Conclui compra (deleta carrinho)
-     * @param {string} token - Token de autenticação
-     */
+    // Finaliza a compra (remove o carrinho e baixa o estoque)
     static completePurchase(token) {
         return cy.request({
             method: 'DELETE',

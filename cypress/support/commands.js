@@ -1,36 +1,27 @@
 // ***********************************************
-// Custom commands for API testing
+// Comandos customizados para facilitar os testes
 // ***********************************************
 
-/**
- * Custom command to validate response schema
- * @example cy.validateSchema(response.body, schema)
- */
+// Valida se o retorno da API tem os campos esperados
 Cypress.Commands.add('validateSchema', (data, schema) => {
-    Object.keys(schema).forEach((key) => {
-        expect(data).to.have.property(key);
-        if (schema[key] !== null) {
-            expect(data[key]).to.be.a(schema[key]);
+    Object.keys(schema).forEach((campo) => {
+        expect(data).to.have.property(campo);
+        if (schema[campo] !== null) {
+            expect(data[campo]).to.be.a(schema[campo]);
         }
     });
 });
 
-/**
- * Custom command to generate unique email
- * @example cy.generateEmail()
- */
+// Gera um email único usando timestamp (evita duplicação)
 Cypress.Commands.add('generateEmail', () => {
     const timestamp = Date.now();
     return `usuario_${timestamp}@qa.com.br`;
 });
 
-/**
- * Custom command to create admin user
- * @example cy.createAdminUser()
- */
+// Cria um usuário administrador para usar nos testes
 Cypress.Commands.add('createAdminUser', () => {
     const email = `admin_${Date.now()}@qa.com.br`;
-    const userData = {
+    const dadosAdmin = {
         nome: 'Admin QA',
         email: email,
         password: 'teste@123',
@@ -40,24 +31,21 @@ Cypress.Commands.add('createAdminUser', () => {
     return cy.request({
         method: 'POST',
         url: '/usuarios',
-        body: userData,
+        body: dadosAdmin,
         failOnStatusCode: false
     }).then((response) => {
-        return { ...userData, _id: response.body._id };
+        return { ...dadosAdmin, _id: response.body._id };
     });
 });
 
-/**
- * Custom command to login and get token
- * @example cy.login(email, password)
- */
-Cypress.Commands.add('login', (email, password) => {
+// Faz login e retorna o token de autenticação
+Cypress.Commands.add('login', (email, senha) => {
     return cy.request({
         method: 'POST',
         url: '/login',
         body: {
             email: email,
-            password: password
+            password: senha
         },
         failOnStatusCode: false
     }).then((response) => {
@@ -68,10 +56,7 @@ Cypress.Commands.add('login', (email, password) => {
     });
 });
 
-/**
- * Custom command to delete user by ID
- * @example cy.deleteUser(userId)
- */
+// Remove um usuário (útil para limpar dados após o teste)
 Cypress.Commands.add('deleteUser', (userId) => {
     return cy.request({
         method: 'DELETE',
@@ -80,10 +65,7 @@ Cypress.Commands.add('deleteUser', (userId) => {
     });
 });
 
-/**
- * Custom command to delete product by ID
- * @example cy.deleteProduct(productId, token)
- */
+// Remove um produto (precisa do token de admin)
 Cypress.Commands.add('deleteProduct', (productId, token) => {
     return cy.request({
         method: 'DELETE',
@@ -95,10 +77,7 @@ Cypress.Commands.add('deleteProduct', (productId, token) => {
     });
 });
 
-/**
- * Custom command to cleanup test data
- * @example cy.cleanupTestData()
- */
+// Comando para limpar dados de teste (placeholder para futuro)
 Cypress.Commands.add('cleanupTestData', () => {
     cy.log('Limpeza de dados de teste realizada');
 });

@@ -1,24 +1,17 @@
-/**
- * Service class for Products endpoints
- */
+// Service para centralizar as chamadas da API de Produtos
 class ProductService {
-    /**
-     * Lista todos os produtos
-     * @param {Object} queryParams - Parâmetros de query (opcional)
-     */
-    static getProducts(queryParams = {}) {
+    
+    // Lista todos os produtos (pode filtrar se passar parâmetros)
+    static getProducts(filtros = {}) {
         return cy.request({
             method: 'GET',
             url: '/produtos',
-            qs: queryParams,
+            qs: filtros,
             failOnStatusCode: false
         });
     }
 
-    /**
-     * Busca produto por ID
-     * @param {string} productId - ID do produto
-     */
+    // Busca um produto específico pelo ID
     static getProductById(productId) {
         return cy.request({
             method: 'GET',
@@ -27,46 +20,33 @@ class ProductService {
         });
     }
 
-    /**
-     * Cria novo produto (requer autenticação de admin)
-     * @param {Object} productData - Dados do produto
-     * @param {string} token - Token de autenticação
-     */
-    static createProduct(productData, token) {
+    // Cria um novo produto (precisa ser admin e passar o token)
+    static createProduct(dadosProduto, token) {
         return cy.request({
             method: 'POST',
             url: '/produtos',
             headers: {
                 Authorization: token
             },
-            body: productData,
+            body: dadosProduto,
             failOnStatusCode: false
         });
     }
 
-    /**
-     * Atualiza produto existente (requer autenticação de admin)
-     * @param {string} productId - ID do produto
-     * @param {Object} productData - Dados atualizados
-     * @param {string} token - Token de autenticação
-     */
-    static updateProduct(productId, productData, token) {
+    // Atualiza um produto existente (precisa ser admin)
+    static updateProduct(productId, dadosNovos, token) {
         return cy.request({
             method: 'PUT',
             url: `/produtos/${productId}`,
             headers: {
                 Authorization: token
             },
-            body: productData,
+            body: dadosNovos,
             failOnStatusCode: false
         });
     }
 
-    /**
-     * Deleta produto (requer autenticação de admin)
-     * @param {string} productId - ID do produto
-     * @param {string} token - Token de autenticação
-     */
+    // Remove um produto (precisa ser admin)
     static deleteProduct(productId, token) {
         return cy.request({
             method: 'DELETE',
