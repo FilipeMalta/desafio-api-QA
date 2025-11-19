@@ -1,132 +1,261 @@
-# Automação de Testes API - ServeRest# Automação de Testes API - ServeRest# Automação de Testes API - ServeRest
+# Automação de Testes API - ServeRest# Automação de Testes API - ServeRest# Automação de Testes API - ServeRest# Automação de Testes API - ServeRest
 
 
 
-Projeto de testes automatizados para validar os principais fluxos da API ServeRest utilizando Cypress.
+Projeto de testes automatizados de API REST utilizando Cypress.
 
 
 
-**API testada:** https://serverest.devProjeto de testes automatizados para validar os principais fluxos da API ServeRest utilizando Cypress.Projeto de testes automatizados de API usando Cypress para validar os principais fluxos da API ServeRest.
+API testada: https://serverest.devProjeto de testes automatizados para validar os principais fluxos da API ServeRest utilizando Cypress.
 
 
 
----
+## Tecnologias utilizadas
 
 
 
-## 🚀 Tecnologias**API testada:** https://serverest.dev**API testada:** [serverest.dev](https://serverest.dev)
+- Cypress 15.6.0**API testada:** https://serverest.devProjeto de testes automatizados para validar os principais fluxos da API ServeRest utilizando Cypress.Projeto de testes automatizados de API usando Cypress para validar os principais fluxos da API ServeRest.
+
+- JavaScript
+
+- Node.js
+
+- Faker.js (geração de dados dinâmicos)
+
+- Mochawesome (relatórios HTML)---
 
 
 
-- **Cypress** - Framework de testes
-
-- **JavaScript** - Linguagem de programação
-
-- **Node.js** - Ambiente de execução---## Tecnologias
-
-- **Faker.js** - Geração de dados dinâmicos
-
-- **Mochawesome** - Geração de relatórios HTML
+## Pré-requisitos
 
 
 
----## 🚀 Tecnologias- Cypress
-
-
-
-## 📋 Pré-requisitos- JavaScript
-
-
-
-- Node.js versão 14 ou superior- **Cypress** - Framework de testes- Node.js
+- Node.js 14+## 🚀 Tecnologias**API testada:** https://serverest.dev**API testada:** [serverest.dev](https://serverest.dev)
 
 - npm ou yarn
 
-- Git- **JavaScript** - Linguagem de programação- Faker.js (dados dinâmicos)
+- Git
 
 
 
----- **Node.js** - Ambiente de execução- Mochawesome (relatórios)
+## Instalação- **Cypress** - Framework de testes
 
 
 
-## 🔧 Instalação- **Faker.js** - Geração de dados dinâmicos
-
-
-
-```bash- **Mochawesome** - Geração de relatórios HTML## Pré-requisitos
-
-# Clonar o repositório
+```bash- **JavaScript** - Linguagem de programação
 
 git clone https://github.com/FilipeMalta/desafio-api-QA.git
 
+cd desafio-api-QA- **Node.js** - Ambiente de execução---## Tecnologias
 
+npm install
 
-# Acessar a pasta do projeto---- Node.js 14 ou superior
-
-cd desafio-api-QA
-
-- npm ou yarn
-
-# Instalar as dependências
-
-npm install## 📋 Pré-requisitos- Git
-
-```
+```- **Faker.js** - Geração de dados dinâmicos
 
 
 
----
-
-- Node.js versão 14 ou superior## Instalação
-
-## ▶️ Como executar
-
-- npm ou yarn
-
-### Executar todos os testes (modo headless)
-
-```bash- Git```bash
-
-npm test
-
-```git clone https://github.com/FilipeMalta/desafio-api-QA.git
+## Comandos para executar- **Mochawesome** - Geração de relatórios HTML
 
 
 
-### Abrir interface do Cypress (modo interativo)---cd desafio-api-QA
+Executar todos os testes:
 
 ```bash
 
-npm run cy:opennpm install
+npm test---## 🚀 Tecnologias- Cypress
 
 ```
 
-## 🔧 Instalação```
 
-### Executar testes específicos
+
+Abrir interface do Cypress:
+
+```bash## 📋 Pré-requisitos- JavaScript
+
+npm run cy:open
+
+```
+
+
+
+Executar suítes específicas:- Node.js versão 14 ou superior- **Cypress** - Framework de testes- Node.js
 
 ```bash
 
-npm run test:login      # Testes de Login
+npm run test:login- npm ou yarn
 
-npm run test:usuarios   # Testes de Usuários```bash## Como executar
+npm run test:usuarios
 
-npm run test:produtos   # Testes de Produtos
+npm run test:produtos- Git- **JavaScript** - Linguagem de programação- Faker.js (dados dinâmicos)
 
-npm run test:carrinhos  # Testes de Carrinhos# Clonar o repositório
+npm run test:carrinhos
 
 ```
 
-git clone https://github.com/FilipeMalta/desafio-api-QA.git**Modo interativo:**
 
-### Gerar relatório HTML
 
-```bash```bash
+Gerar relatório:---- **Node.js** - Ambiente de execução- Mochawesome (relatórios)
+
+```bash
 
 npm run report
 
-```# Acessar a pasta do projetonpm run cy:open
+```
+
+## 🔧 Instalação- **Faker.js** - Geração de dados dinâmicos
+
+## Estrutura do projeto
+
+
+
+```
+
+cypress/```bash- **Mochawesome** - Geração de relatórios HTML## Pré-requisitos
+
+├── e2e/
+
+│   ├── login.cy.js# Clonar o repositório
+
+│   ├── usuarios.cy.js
+
+│   ├── produtos.cy.jsgit clone https://github.com/FilipeMalta/desafio-api-QA.git
+
+│   └── carrinhos.cy.js
+
+├── fixtures/
+
+│   ├── users.json
+
+│   ├── products.json# Acessar a pasta do projeto---- Node.js 14 ou superior
+
+│   └── carts.json
+
+├── services/cd desafio-api-QA
+
+│   ├── LoginService.js
+
+│   ├── UserService.js- npm ou yarn
+
+│   ├── ProductService.js
+
+│   └── CartService.js# Instalar as dependências
+
+└── support/
+
+    ├── commands.jsnpm install## 📋 Pré-requisitos- Git
+
+    └── e2e.js
+
+``````
+
+
+
+## Cenários implementados
+
+
+
+### Login---
+
+- CT01: Login com credenciais válidas
+
+- CT02: Login com credenciais inválidas- Node.js versão 14 ou superior## Instalação
+
+
+
+### Usuários## ▶️ Como executar
+
+- CT01: Criar usuário com sucesso
+
+- CT02: Validar erro ao cadastrar email duplicado- npm ou yarn
+
+
+
+### Produtos### Executar todos os testes (modo headless)
+
+- CT01: Criar produto com usuário admin autenticado
+
+- CT02: Listar produtos com filtros aplicados```bash- Git```bash
+
+
+
+### Carrinhosnpm test
+
+- CT01: Criar carrinho com sucesso
+
+- CT02: Validar erro ao adicionar produto inexistente```git clone https://github.com/FilipeMalta/desafio-api-QA.git
+
+
+
+**Total: 8 cenários críticos implementados**
+
+
+
+*Obs: Existem cenários adicionais mapeados nos arquivos de teste (comentados com .skip) mas priorizei os 2 cenários críticos de cada funcionalidade conforme solicitado.*### Abrir interface do Cypress (modo interativo)---cd desafio-api-QA
+
+
+
+## Validações realizadas```bash
+
+
+
+- Status code das respostasnpm run cy:opennpm install
+
+- Mensagens de erro e sucesso
+
+- Estrutura dos dados retornados```
+
+- Regras de negócio (email duplicado, autenticação, autorização)
+
+## 🔧 Instalação```
+
+## Organização
+
+### Executar testes específicos
+
+**Services:** Classes para organizar as chamadas da API por endpoint. Evita duplicação de código e facilita manutenção.
+
+```bash
+
+**Custom Commands:** Comandos reutilizáveis para tarefas repetitivas (login, criação de usuário admin, geração de emails únicos).
+
+npm run test:login      # Testes de Login
+
+**Fixtures:** Arquivos JSON com dados de exemplo para usar nos testes.
+
+npm run test:usuarios   # Testes de Usuários```bash## Como executar
+
+**Hooks:** Uso de before/after e beforeEach/afterEach para preparar ambiente e limpar dados de teste.
+
+npm run test:produtos   # Testes de Produtos
+
+## Melhorias futuras
+
+npm run test:carrinhos  # Testes de Carrinhos# Clonar o repositório
+
+- Implementar cenários adicionais já mapeados
+
+- Adicionar testes de atualização e exclusão```
+
+- Integrar com CI/CD (GitHub Actions)
+
+- Expandir cobertura de relatóriosgit clone https://github.com/FilipeMalta/desafio-api-QA.git**Modo interativo:**
+
+
+
+---### Gerar relatório HTML
+
+
+
+**Filipe Malta**  ```bash```bash
+
+QA Pleno
+
+npm run report
+
+GitHub: https://github.com/FilipeMalta  
+
+Email: filipe.fm.malta@gmail.com```# Acessar a pasta do projetonpm run cy:open
+
 
 
 
