@@ -90,30 +90,4 @@ describe('API Tests - Produtos', () => {
             });
         });
     });
-
-    // Cenários adicionais mapeados (não implementados neste momento)
-    context.skip('Cenários Adicionais', () => {
-        it('CT03 - Não deve criar produto sem autenticação', () => {
-            const productData = {
-                nome: 'Produto Sem Auth',
-                preco: 500,
-                descricao: 'Teste sem token',
-                quantidade: 10
-            };
-
-            ProductService.createProduct(productData, '').then((response) => {
-                expect(response.status).to.equal(401);
-                expect(response.body.message).to.equal('Token de acesso ausente, inválido, expirado ou usuário do token não existe mais');
-            });
-        });
-
-        it('CT04 - Deve listar todos os produtos', () => {
-            ProductService.getProducts().then((response) => {
-                expect(response.status).to.equal(200);
-                expect(response.body).to.have.property('quantidade');
-                expect(response.body).to.have.property('produtos');
-                expect(response.body.produtos).to.be.an('array');
-            });
-        });
-    });
 });
