@@ -1,0 +1,31 @@
+{
+  "validProduct": {
+    "nome": "Notebook Dell Inspiron 15",
+    "preco": 3500,
+    "descricao": "Notebook para testes automatizados",
+    "quantidade": 100
+  },
+  "productWithoutStock": {
+    "nome": "Mouse Gamer RGB",
+    "preco": 150,
+    "descricao": "Mouse para jogos",
+    "quantidade": 0
+  },
+  "productWithHighPrice": {
+    "nome": "MacBook Pro M3",
+    "preco": 15000,
+    "descricao": "Notebook de alta performance",
+    "quantidade": 50
+  },
+  "productWithoutName": {
+    "preco": 200,
+    "descricao": "Produto sem nome",
+    "quantidade": 10
+  },
+  "productWithNegativePrice": {
+    "nome": "Produto Invalido",
+    "preco": -100,
+    "descricao": "Produto com preco negativo",
+    "quantidade": 10
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "validUser": {
+    "nome": "Usuario Teste QA",
+    "email": "qa.teste@email.com",
+    "password": "teste@123",
+    "administrador": "false"
+  },
+  "adminUser": {
+    "nome": "Admin Teste QA",
+    "email": "admin.qa@email.com",
+    "password": "admin@123",
+    "administrador": "true"
+  },
+  "invalidUser": {
+    "nome": "Usuario Invalido",
+    "email": "invalido@email.com",
+    "password": "senhaErrada123"
+  },
+  "userWithoutName": {
+    "email": "semNome@email.com",
+    "password": "teste@123",
+    "administrador": "false"
+  },
+  "userWithInvalidEmail": {
+    "nome": "Usuario Email Invalido",
+    "email": "emailinvalido",
+    "password": "teste@123",
+    "administrador": "false"
+  }
+}
