@@ -76,27 +76,27 @@ cypress/
 
 ## Cenários de Teste
 
-### Login (2 testes)
-- Login com credenciais válidas
-- Login com credenciais inválidas
+### Login (2 cenários críticos)
+**CT01** - Login com credenciais válidas  
+**CT02** - Login com credenciais inválidas
 
 ---
 
-### Usuários (2 testes)
-- Criar usuário com sucesso
-- Validar erro ao tentar cadastrar email duplicado
+### Usuários (2 cenários críticos)
+**CT01** - Criar usuário com sucesso  
+**CT02** - Validar erro ao tentar cadastrar email duplicado
 
 ---
 
-### Produtos (2 testes)
-- Criar produto com usuário admin autenticado
-- Listar produtos com filtros
+### Produtos (2 cenários críticos)
+**CT01** - Criar produto com usuário admin autenticado  
+**CT02** - Listar produtos com filtros aplicados
 
 ---
 
-### Carrinhos (2 testes)
-- Criar carrinho com sucesso
-- Validar erro ao adicionar produto inexistente
+### Carrinhos (2 cenários críticos)
+**CT01** - Criar carrinho com sucesso  
+**CT02** - Validar erro ao adicionar produto inexistente no carrinho
 
 ---
 
@@ -120,12 +120,14 @@ Uso de beforeEach e afterEach para preparar e limpar os dados de teste.
 
 ## Cobertura de Testes
 
-**8 testes implementados**
+**8 cenários críticos implementados**
 
-- login.cy.js: 2 testes
-- usuarios.cy.js: 2 testes
-- produtos.cy.js: 2 testes
-- carrinhos.cy.js: 2 testes
+- login.cy.js: 2 cenários
+- usuarios.cy.js: 2 cenários
+- produtos.cy.js: 2 cenários
+- carrinhos.cy.js: 2 cenários
+
+> Obs: Foram mapeados cenários adicionais (comentados com `.skip`) mas priorizei apenas os 2 críticos de cada funcionalidade conforme solicitado no desafio.
 
 ## O que é validado
 

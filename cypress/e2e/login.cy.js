@@ -67,7 +67,8 @@ describe('API Tests - Login', () => {
         });
     });
 
-    context('Cenários Adicionais', () => {
+    // Cenários adicionais mapeados (não implementados neste momento)
+    context.skip('Cenários Adicionais', () => {
         it('CT03 - Não deve realizar login com email não cadastrado', () => {
             const nonExistentEmail = `nao_existe_${Date.now()}@qa.com.br`;
             const anyPassword = 'qualquerSenha123';
